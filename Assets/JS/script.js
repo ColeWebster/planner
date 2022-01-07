@@ -1,40 +1,38 @@
 // I want to have a daily date on the page
 $("#currentDay").text(moment().format('MMMM Do YYYY, h:mm a'));
 
+//Loads on ready
+$(document).ready( function () {
+    colorChange();
+    saveText();
+})
+
+
 // Psuedo Code
 function colorChange() {
 //1. Grabs time from above
-    var liveTime = moment().hour(); 
-
+    var liveTime = moment().hours(); 
 //2. Checks the hours
-    $(".time-block").each(function () {
-        var hourColumn = parseInt($(this).attr('id').split('hour')[1]);
-        
+    $(".input").each(function () {
+        var hourColumn = parseInt($(this).attr('id'));
 
-//3. Check the time status
-        if (hourColumn < liveTime) {
-            $(this).addClass('past');
-            $(this).removeClass('present');
-            $(this).removeClass('future');
+        if (hourColumn == liveTime) {
+            $(this).removeClass("future");
+            $(this).removeClass("present");
+            $(this).addClass("past");
         }
-        //Checking if the current time is is less than the hours listed
-        else if (liveTime === hourColumn) {
-            $(this).removeClass('past');
-            $(this).removeClass('future');
-            $(this).addClass('present');
+        else if (liveTime == hourColumn) {
+            $(this).removeClass("present");
+            $(this).removeClass("past");
+            $(this).addClass("future");
         }
         else {
-            $(this).removeClass('past');
-            $(this).addClass('future');
-            $(this).removeClass('present');
+            $(this).removeClass("future");
+            $(this).removeClass("past");
+            $(this).addClass("present");
         }
-    })     
+    });     
 }
-
-// Want to save to local storage
-localStorage.setItem(time, value);
-
-
 
 // button function
 $(".saveBtn").click(function() {
@@ -51,3 +49,16 @@ saveText ();
 });
  
 // Save to local
+function saveText() {
+    var saveEventText8 = JSON.parse(localStorage.getItem("8:00 am"));
+    $("#8").val("");
+    $("#8").val(saveEventText8);
+
+    var saveEventText9 = JSON.parse(localStorage.getItem("9:00 am"));
+    $("#9").val("");
+    $("#9").val(saveEventText9);
+    
+    var saveEventText10 = JSON.parse(localStorage.getItem("10:00 am"));
+    $("#10").val("");
+    $("#10").val(saveEventText10);
+}

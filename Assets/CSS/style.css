@@ -15,8 +15,8 @@ textarea {
 
 .jumbotron {
   text-align: center;
-  background-color: transparent;
-  color: black;
+  background-color: #06aed5;
+  color: whitesmoke;
   border-radius: 0;
   border-bottom: 10px solid black;
 }
@@ -43,7 +43,7 @@ textarea {
 }
 
 .past {
-  background-color: #d3d3d3;
+  background-color: #adadad;
   color: white;
 }
 
