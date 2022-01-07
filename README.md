@@ -3,3 +3,18 @@
 - Have created time boxes for business hours 
 
 - Have functional time
+
+- Linked the dashed border to the hours
+
+- Added blue color to save function
+
+- Attended tutoring session (Input ids for text area and function help)
+
+- Working on creating a function to change colors
+
+##
+
+- Starting to work on timer functions.
+
+- Completed work on function to add the class to the time pulled down from the current day.
+
