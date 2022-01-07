@@ -1,6 +1,6 @@
 # planner
 
-- Link to live GitHub page:
+- Link to live GitHub page: https://colewebster.github.io/planner/
 - Link to repo: https://github.com/ColeWebster/planner
 
 
