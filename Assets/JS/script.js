@@ -1,64 +1,64 @@
-// I want to have a daily date on the page
-$("#currentDay").text(moment().format('MMMM Do YYYY, h:mm a'));
+var today = moment().format("dddd,  LL, LT");
+//variable for today in the format to show current time
 
-//Loads on ready
-$(document).ready( function () {
-    colorChange();
-    saveText();
-})
+$("#currentDay").text(today);
+//adds to jumbotron
 
+// moment.js
+var liveTime = new Date().getHours();
+console.log(liveTime)
 
-// Psuedo Code
-function colorChange() {
-//1. Grabs time from above
-    var liveTime = moment().hours(); 
-//2. Checks the hours
-    $(".input").each(function () {
-        var hourColumn = parseInt($(this).attr('id'));
+var timeCounter = Array.from(document.getElementsByTagName('textarea'));
+console.log(timeCounter);
+//Constructing array to snag the rows
 
-        if (hourColumn == liveTime) {
-            $(this).removeClass("future");
-            $(this).removeClass("present");
-            $(this).addClass("past");
+//Function to have dynamic hour class applied to input area
+function changeColor(){
+    for (var i=0; i<timeCounter.length; i++) {
+        var singleBlock = timeCounter[i];
+        //Adding present class if in the present
+        if (singleBlock.dataset.number == liveTime) {
+            singleBlock.classList.add("present");
         }
-        else if (liveTime == hourColumn) {
-            $(this).removeClass("present");
-            $(this).removeClass("past");
-            $(this).addClass("future");
+        //Adding past
+        if (singleBlock.dataset.number < liveTime) {
+            singleBlock.classList.add("past");
         }
-        else {
-            $(this).removeClass("future");
-            $(this).removeClass("past");
-            $(this).addClass("present");
-        }
-    });     
+        //Adding Future
+        if (singleBlock.dataset.number > liveTime) {
+            singleBlock.classList.add("future");
+        }  
+    }  
+}
+changeColor();
+//Running
+
+// Accesing local saved data
+function getData(){
+    for (var j = 0; j < localStorage.length; j++) {
+        var keyNumbers = localStorage.key(j);
+        // using a variable to save the syntax
+        timeCounter.forEach(function(item) {
+            if (item.dataset.number == keyNumbers) {
+                item.value = localStorage.getItem(keyNumbers)
+            }
+        })   
+    }
 }
 
-// button function
-$(".saveBtn").click(function() {
-    var eventText;
-    var eventTime;
-    eventText = $(this).siblings(".input").val("");
-    eventText = $(this).siblings(".input").val();
-    eventTime = $(this).siblings(".hour").text();
-    localStorage.setItem(eventTime, JSON.stringify(eventText));
+getData();
 
-colorChange ();
-saveText ();
-
-});
- 
-// Save to local
-function saveText() {
-    var saveEventText8 = JSON.parse(localStorage.getItem("8:00 am"));
-    $("#8").val("");
-    $("#8").val(saveEventText8);
-
-    var saveEventText9 = JSON.parse(localStorage.getItem("9:00 am"));
-    $("#9").val("");
-    $("#9").val(saveEventText9);
+//Save button 
+$(".saveBtn").on("click", function (event) {
+    event.preventDefault();
+    //prevent refresh
+    var notes = $(this).siblings("textarea").val();
+    var rowHourActive = $(this).siblings("textarea").data("number");
+    window.localStorage.setItem(rowHourActive, notes);
     
-    var saveEventText10 = JSON.parse(localStorage.getItem("10:00 am"));
-    $("#10").val("");
-    $("#10").val(saveEventText10);
-}
+});
+
+
+
+
+

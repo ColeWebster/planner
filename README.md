@@ -25,3 +25,9 @@
 - Have reformatted HTML and have completed it, input is avaible for typing and save is now clickable
 
 - Function adding classes works but needs to fine tune to connect with time. 
+
+##
+
+- Added a data number to the rows so that they can be used in the array to change with the time, since otehrwise calculating in 24 hour time. 
+
+- Input is live and able to be added, and saved to local storage with a click. 🔒
