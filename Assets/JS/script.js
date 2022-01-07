@@ -14,31 +14,40 @@ function colorChange() {
 //3. Check the time status
         if (hourColumn < liveTime) {
             $(this).addClass('past');
-            $(this).removeClass('present')
+            $(this).removeClass('present');
+            $(this).removeClass('future');
         }
         //Checking if the current time is is less than the hours listed
         else if (liveTime === hourColumn) {
             $(this).removeClass('past');
-            $(this).removeClass('future')
-            $(this).addClass('present')
+            $(this).removeClass('future');
+            $(this).addClass('present');
         }
         else {
             $(this).removeClass('past');
-            $(this).addClass('future')
-            $(this).removeClass('present')
+            $(this).addClass('future');
+            $(this).removeClass('present');
         }
     })     
 }
 
-
-
-
-
 // Want to save to local storage
+localStorage.setItem(time, value);
 
 
 
-// Alert message "I just saved to local storage"
+// button function
+$(".saveBtn").click(function() {
+    var eventText;
+    var eventTime;
+    eventText = $(this).siblings(".input").val("");
+    eventText = $(this).siblings(".input").val();
+    eventTime = $(this).siblings(".hour").text();
+    localStorage.setItem(eventTime, JSON.stringify(eventText));
 
+colorChange ();
+saveText ();
+
+});
  
-//Item listener for click
+// Save to local

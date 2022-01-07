@@ -18,3 +18,8 @@
 
 - Completed work on function to add the class to the time pulled down from the current day.
 
+##
+
+- Still need work on timer function
+
+- Have reformatted HTML and have completed it, input is avaible for typing and save is now clickable
